@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>CertificApp</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css" />
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+</head>
+<body>
+	<div>
+		<nav class="navbar">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand">CertificApp</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="container">
+		<form th:action="@{/generateCertification}" method="post"
+			th:object="${certification}" enctype="multipart/form-data">
+			<div class="form-group">
+				<div class="form-group">
+					<label for="nombre">Nombre del proyecto</label> <input type="text"
+						th:field="*{title}" class="form-control" id="title"></input><br />
+					<label for="student1">Alumno 1</label> <input type="text"
+						th:field="*{student1}" class="form-control" id="student1"></input><br />
+					<label for="student2">Alumno 2</label> <input type="text"
+						th:field="*{student2}" class="form-control" id="student2"></input><br />
+					<label for="link">Enlace</label> <input type="text"
+						th:field="*{link}" class="form-control" id="link"></input><br />
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Generar</button>
+			<br />
+		</form>
+		<br />
+		<div th:if="${errorMessage}">
+			<div th:text="${errorMessage}" style="color: red; font-weight: bold;"></div>
+		</div>
+	</div>
+	<br />
+	<div>
+		<div class="container">
+			<footer> &copy;JYellow363 para Taller de Desempe&ntilde;o
+				Profesional </footer>
+		</div>
+	</div>
+</body>
+</html>

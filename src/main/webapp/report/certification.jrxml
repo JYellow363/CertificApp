@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports 
+	Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928 -->
+<jasperReport
+	xmlns="http://jasperreports.sourceforge.net/jasperreports"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+	name="certification" pageWidth="842" pageHeight="595"
+	orientation="Landscape" columnWidth="802" leftMargin="20"
+	rightMargin="20" topMargin="20" bottomMargin="20"
+	whenResourceMissingType="Empty"
+	uuid="d23c12f5-48bf-406f-b6d1-078f13c9cf3e">
+	<property name="net.sf.jasperreports.print.create.bookmarks"
+		value="false" />
+	<parameter name="title" class="java.lang.String" />
+	<parameter name="student1" class="java.lang.String" />
+	<parameter name="student2" class="java.lang.String" />
+	<parameter name="link" class="java.lang.String" />
+	<parameter name="route" class="java.lang.String" />
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<summary>
+		<band height="555" splitType="Stretch">
+			<image>
+				<reportElement x="11" y="0" width="780" height="555"
+					uuid="70816d1a-9c8d-4634-988a-096bacee159e" />
+				<imageExpression class="java.lang.String"><![CDATA[$P{route} + "/certification.jpg"]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="315" y="202" width="440" height="50" forecolor="#25364E" uuid="b12005fd-4d7d-4434-93d0-459b4365de25">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monserrat Bold" size="11" isBold="true"/>
+					<paragraph tabStopWidth="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="323" y="291" width="425" height="30" forecolor="#25364E" uuid="d4ed3ba3-7295-4c95-af80-56eff1e986a6">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="MyriadPro Bold" size="18" isBold="true"/>
+					<paragraph tabStopWidth="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{student2}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="323" y="266" width="425" height="30" forecolor="#25364E" uuid="00027a0d-88f0-463b-86b9-f055cde24e4d">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="MyriadPro Bold" size="18" isBold="true"/>
+					<paragraph tabStopWidth="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{student1}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="428" y="340" width="219" height="20" forecolor="rgba(97, 97, 102, 0.92156863)" uuid="a44af000-2ce5-4b65-82fb-04893efa1bcc">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Metric RegularItalic" isItalic="true"/>
+					<paragraph tabStopWidth="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{link}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="492" y="375" width="107" height="70"
+					uuid="34195c74-f21f-428c-92de-a3907b4c766c" />
+				<imageExpression class="java.lang.String"><![CDATA[$P{route} + "/signature.png"]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

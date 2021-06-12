@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+	<fontFamily name="Monserrat Bold">
+		<bold><![CDATA[fonts/MonserratBold/montserrat-bold_[allfont.es].ttf]]></bold>
+		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
+		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+		<exportFonts/>
+	</fontFamily>
+	<fontFamily name="Metric RegularItalic">
+		<italic><![CDATA[fonts/MetricRegularItalic/Metric-RegularItalic.ttf]]></italic>
+		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
+		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+		<exportFonts/>
+	</fontFamily>
+	<fontFamily name="MyriadPro Bold">
+		<bold><![CDATA[fonts/MyriadProBold/FontsFree-Net-MYRIADPRO-BOLD.ttf]]></bold>
+		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
+		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+		<exportFonts/>
+	</fontFamily>
+</fontFamilies>
