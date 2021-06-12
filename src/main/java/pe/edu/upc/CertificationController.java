@@ -2,6 +2,7 @@ package pe.edu.upc;
 
 import java.io.IOException;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.upc.encrypt.PropertyServiceForJasyptStarter;
+import pe.edu.upc.model.Admin;
+import pe.edu.upc.model.Certification;
+
 @Controller
 @RequestMapping("/")
 public class CertificationController {
@@ -24,21 +29,48 @@ public class CertificationController {
 	@Autowired
 	private ServletContext servletContext;
 
-	private Certification certification;
+	@Autowired
+	PropertyServiceForJasyptStarter encryptorService;
 
-	@RequestMapping("")
+	private Certification certification;
+	private boolean loginFlag;
+	
+	@PostConstruct
+	void init() {
+		setLoginFlag(false);
+	}
+
+	@RequestMapping("/home")
 	public String goGenerate(Model model) {
+		if (loginFlag == false) {
+			return "redirect:/";
+		}
 		setCertification(new Certification());
 		model.addAttribute("certification", certification);
+		setLoginFlag(false);
 		return "certification";
 	}
 
-	@RequestMapping("/goGenerateSave")
-	public String goGenerateSave(Model model) {
-		if (certification == null)
+	@RequestMapping("/goHome")
+	public String goHome(@ModelAttribute Admin admin, BindingResult binRes, Model model,
+			RedirectAttributes redirectAttributes) {
+		if (encryptorService.getAdminPassword().equals(admin.getPassword())) {
+			setLoginFlag(true);
+			return "redirect:/home";
+		} else if (admin.getPassword().isEmpty()) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Contraseña en blanco..");
 			return "redirect:/";
-		model.addAttribute("certification", certification);
-		return "certification";
+		} else
+		{
+			redirectAttributes.addFlashAttribute("errorMessage", "Contraseña incorrecta.");
+			return "redirect:/";
+		}
+	}
+
+	@RequestMapping("/")
+	public String login(Model model) {
+		model.addAttribute("admin", new Admin());
+		return "login";
 	}
 
 	@RequestMapping("/generateCertification")
@@ -110,4 +142,11 @@ public class CertificationController {
 		this.certification = certification;
 	}
 
+	public boolean isLoginFlag() {
+		return loginFlag;
+	}
+
+	public void setLoginFlag(boolean loginFlag) {
+		this.loginFlag = loginFlag;
+	}
 }

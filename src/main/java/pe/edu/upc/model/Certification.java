@@ -1,4 +1,4 @@
-package pe.edu.upc;
+package pe.edu.upc.model;
 
 import lombok.Getter;
 import lombok.Setter;

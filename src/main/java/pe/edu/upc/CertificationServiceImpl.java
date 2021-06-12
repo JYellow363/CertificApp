@@ -15,6 +15,8 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
+import pe.edu.upc.model.Certification;
+
 @Service
 public class CertificationServiceImpl implements CertificationService {
 

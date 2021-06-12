@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>CertificApp</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css" />
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+</head>
+
+<body>
+	<div>
+		<nav class="navbar">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand">CertificApp</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="container">
+		<form th:action="@{/goHome}" method="post" th:object="${admin}">
+			<div class="form-group">
+				<div class="form-group">
+					<label for="password">Contrase&ntilde;a</label> <input type="password"
+						th:field="*{password}" class="form-control" id="password"></input><br />
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Ingresar</button>
+			<br />
+		</form>
+		<br />
+		<div th:if="${errorMessage}">
+			<div th:text="${errorMessage}" style="color: red; font-weight: bold;"></div>
+		</div>
+	</div>
+</html>
