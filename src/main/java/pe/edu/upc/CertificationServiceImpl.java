@@ -21,6 +21,10 @@ public class CertificationServiceImpl implements CertificationService {
 	@Override
 	public byte[] generateCertification(String jaspertRoute, Certification certification) throws Exception {
 		byte[] resultPdf = null;
+		if(certification.getStudent2().isEmpty()) {
+			certification.setStudent2(certification.getStudent1());
+			certification.setStudent1("");
+		}
 		Map<String, Object> input = new HashMap<String, Object>();
 		input.put("title", certification.getTitle().toUpperCase());
 		input.put("student1", certification.getStudent1().toUpperCase());

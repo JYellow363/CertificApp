@@ -30,7 +30,7 @@
 					uuid="70816d1a-9c8d-4634-988a-096bacee159e" />
 				<imageExpression class="java.lang.String"><![CDATA[$P{route} + "/certification.jpg"]]></imageExpression>
 			</image>
-			<textField isStretchWithOverflow="true">
+			<textField textAdjust="StretchHeight">
 				<reportElement stretchType="RelativeToTallestObject" x="315" y="202" width="440" height="50" forecolor="#25364E" uuid="b12005fd-4d7d-4434-93d0-459b4365de25">
 					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
 				</reportElement>

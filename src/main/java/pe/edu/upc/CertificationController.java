@@ -23,7 +23,7 @@ public class CertificationController {
 
 	@Autowired
 	private ServletContext servletContext;
-	
+
 	private Certification certification;
 
 	@RequestMapping("")
@@ -35,7 +35,8 @@ public class CertificationController {
 
 	@RequestMapping("/goGenerateSave")
 	public String goGenerateSave(Model model) {
-		if(certification == null) return "redirect:/";
+		if (certification == null)
+			return "redirect:/";
 		model.addAttribute("certification", certification);
 		return "certification";
 	}
@@ -44,7 +45,8 @@ public class CertificationController {
 	public void generate(@ModelAttribute Certification certification, BindingResult binRes, Model model,
 			RedirectAttributes redirectAttributes, HttpServletResponse response) throws Exception {
 		setCertification(certification);
-		if(certification == null) certification = new Certification();
+		if (certification == null)
+			certification = new Certification();
 		if (binRes.hasErrors()) {
 			System.out.println("Error en BindingResult");
 		} else {
@@ -63,9 +65,9 @@ public class CertificationController {
 				redirectAttributes.addFlashAttribute("errorMessage", "Debe colocar el nombre del proyecto.");
 				flag = false;
 			}
-			
+
 			String jaspertRoute = servletContext.getRealPath("/report");
-			
+
 			if (flag == true) {
 				byte[] bytes = certificationService.generateCertification(jaspertRoute, certification);
 				setPDFResponse(response, bytes, getFileName());
@@ -74,31 +76,31 @@ public class CertificationController {
 	}
 
 	public String getFileName() {
-		String part1[] = {"", ""};
-		String part2[] = {"", ""};
-		if( getCertification().getStudent1() != null) {
+		String part1[] = { "", "" };
+		String part2[] = { "", "" };
+		if (!getCertification().getStudent1().isEmpty()) {
 			part1 = getCertification().getStudent1().split(" ", 2);
 			part1[0] = "_" + part1[0];
 		}
-		if( getCertification().getStudent2() != null) {
+		if (!getCertification().getStudent2().isEmpty()) {
 			part2 = getCertification().getStudent2().split(" ", 2);
 			part2[0] = "_" + part2[0];
 		}
 		return "Certificado" + part1[0] + part2[0];
 	}
-	
-    public static void setPDFResponse(HttpServletResponse response, byte[] bytes, String filename) throws IOException {
-        response.reset();
-        response.setContentType("application/octet-stream");
-        response.setContentLength(bytes.length);
-        response.setHeader("Content-disposition", "attachment; filename=\"" + filename + ".pdf\"");
-        response.setHeader("Pragma", "no-cache");
-        response.setDateHeader("Expires", 0);
-        ServletOutputStream ouputStream = response.getOutputStream();
-        ouputStream.write(bytes, 0, bytes.length);
-        ouputStream.flush();
-        ouputStream.close();
-    }
+
+	public static void setPDFResponse(HttpServletResponse response, byte[] bytes, String filename) throws IOException {
+		response.reset();
+		response.setContentType("application/octet-stream");
+		response.setContentLength(bytes.length);
+		response.setHeader("Content-disposition", "attachment; filename=\"" + filename + ".pdf\"");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
+		ServletOutputStream ouputStream = response.getOutputStream();
+		ouputStream.write(bytes, 0, bytes.length);
+		ouputStream.flush();
+		ouputStream.close();
+	}
 
 	public Certification getCertification() {
 		return certification;
