@@ -16,7 +16,7 @@
 	<name>certification-app</name>
 	<description>Aplicación para emisión de certificados.</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
