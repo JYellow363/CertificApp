@@ -1,9 +1,9 @@
 package pe.edu.upc;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,14 +27,11 @@ public class CertificationController {
 	CertificationService certificationService;
 
 	@Autowired
-	private ServletContext servletContext;
-
-	@Autowired
 	PropertyServiceForJasyptStarter encryptorService;
 
 	private Certification certification;
 	private boolean loginFlag;
-	
+
 	@PostConstruct
 	void init() {
 		setLoginFlag(false);
@@ -60,8 +57,7 @@ public class CertificationController {
 		} else if (admin.getPassword().isEmpty()) {
 			redirectAttributes.addFlashAttribute("errorMessage", "Contraseña en blanco..");
 			return "redirect:/";
-		} else
-		{
+		} else {
 			redirectAttributes.addFlashAttribute("errorMessage", "Contraseña incorrecta.");
 			return "redirect:/";
 		}
@@ -98,7 +94,7 @@ public class CertificationController {
 				flag = false;
 			}
 
-			String jaspertRoute = servletContext.getRealPath("/report");
+			String jaspertRoute = Paths.get("").toFile().getAbsolutePath() + "/src/main/webapp/report";
 
 			if (flag == true) {
 				byte[] bytes = certificationService.generateCertification(jaspertRoute, certification);

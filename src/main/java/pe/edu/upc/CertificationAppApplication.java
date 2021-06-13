@@ -1,8 +1,5 @@
 package pe.edu.upc;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Paths;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.boot.SpringApplication;
@@ -18,7 +15,5 @@ public class CertificationAppApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CertificationAppApplication.class, args);
-		System.out.println(FileSystems.getDefault());
-		System.out.println(Paths.get("").toFile().getAbsolutePath());
 	}
 }
