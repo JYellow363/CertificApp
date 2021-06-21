@@ -80,10 +80,6 @@ public class CertificationController {
 		} else {
 
 			boolean flag = true;
-			if (getCertification().getLink().isEmpty() || getCertification().getLink() == null) {
-				redirectAttributes.addFlashAttribute("errorMessage", "Debe colocar el enlace.");
-				flag = false;
-			}
 			if ((getCertification().getStudent1().isEmpty() || getCertification().getStudent1() == null)
 					&& (getCertification().getStudent2().isEmpty() || getCertification().getStudent2() == null)) {
 				redirectAttributes.addFlashAttribute("errorMessage", "Debe colocar al menos un estudiante.");
@@ -95,11 +91,11 @@ public class CertificationController {
 			}
 
 			String jaspertRoute = Paths.get("").toFile().getAbsolutePath() + "/src/main/webapp/report";
-
+			System.out.println(flag);
 			if (flag == true) {
 				byte[] bytes = certificationService.generateCertification(jaspertRoute, certification);
 				setPDFResponse(response, bytes, getFileName());
-			}
+			} else return;
 		}
 	}
 

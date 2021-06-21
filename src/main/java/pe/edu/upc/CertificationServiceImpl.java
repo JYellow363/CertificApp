@@ -31,7 +31,7 @@ public class CertificationServiceImpl implements CertificationService {
 		input.put("title", certification.getTitle().toUpperCase());
 		input.put("student1", certification.getStudent1().toUpperCase());
 		input.put("student2", certification.getStudent2().toUpperCase());
-		input.put("link", certification.getLink());
+		input.put("link", "");
 		input.put("route", jaspertRoute);
 		resultPdf = export(jaspertRoute + "/certification.jrxml", input);
 		return resultPdf;
